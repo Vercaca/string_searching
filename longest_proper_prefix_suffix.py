@@ -12,6 +12,7 @@ Example:
 'ababa' --> 'abc'
 
 '''
+import sys
 
 # failure function (prefix function)
 # Dynamic Programming
@@ -21,14 +22,16 @@ def failure(p):
     # iterative, bottom-up DP
     j = -1
     for i in range(1, len(p)):
-        # print('i = {}, try: {}'.format(i, p[:j+2]))
         while j >= 0 and p[j+1] != p[i]:
-            # print('j = {}, failure_list = {}'.format(j, failure_list))
+            # print('-'*60)
+            # print('i = {}'.format(i))
+            # print('original j = {}, failure_list = {}'.format(j, failure_list))
             j = failure_list[j]
+            # print('new j = {}'.format(j))
+
 
         # found the p[i] which is same as p[j+1]
         if p[j+1] == p[i]:
-            # print('found "{}", ans = "{}"'.format(p[i], p[:j+2]))
             j+=1
 
         # get the value of failure[i]
@@ -36,6 +39,9 @@ def failure(p):
     return failure_list
 
 if __name__ == '__main__':
-    p = 'abcabbaabc'
+    p = 'abccabc'
+    if len(sys.argv) > 1:
+        p = sys.argv[1]
+
     print('p = "{}"'.format(p))
     print(failure(p))
