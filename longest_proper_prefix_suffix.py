@@ -9,7 +9,7 @@
 Example:
 'abc' --> ''
 'abcaa' --> 'a'
-'ababa' --> 'abc'
+'ababa' --> 'aba'
 
 '''
 import sys
